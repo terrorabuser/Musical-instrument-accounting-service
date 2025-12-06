@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Music, User, Edit3, Trash2, X, Plus, LogOut } from 'lucide-react'
 import InstrumentList from './components/InstrumentList'
 import InstrumentForm from './components/InstrumentForm'
 import Statistics from './components/Statistics'
@@ -155,16 +156,16 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🎵 Система учета музыкальных инструментов</h1>
+        <h1><Music size={32} /> Система учета музыкальных инструментов</h1>
         <div className="header-actions">
           {isAuthenticated ? (
             <>
-              <span className="user-info">👤 {user?.nickname}</span>
+              <span className="user-info"><User size={18} /> {user?.nickname}</span>
               <button className="btn btn-secondary" onClick={logout}>
-                Выйти
+                <LogOut size={18} /> Выйти
               </button>
               <button className="btn btn-primary" onClick={handleCreate}>
-                + Добавить инструмент
+                <Plus size={18} /> Добавить инструмент
               </button>
             </>
           ) : (
@@ -232,7 +233,7 @@ function App() {
                             setShowDetails(false)
                           }}
                         >
-                          ✏️ Редактировать
+                          <Edit3 size={16} /> Редактировать
                         </button>
                         {selectedInstrument.id && (
                           <button
@@ -242,13 +243,13 @@ function App() {
                               setShowDetails(false)
                             }}
                           >
-                            🗑️ Удалить
+                            <Trash2 size={16} /> Удалить
                           </button>
                         )}
                       </>
                     )}
                     <button className="btn btn-secondary" onClick={handleCloseDetails}>
-                      ✕ Закрыть
+                      <X size={16} /> Закрыть
                     </button>
                   </div>
                 </div>
@@ -305,7 +306,3 @@ function App() {
 }
 
 export default App
-
-
-
-

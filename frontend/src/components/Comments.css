@@ -1,9 +1,9 @@
 .comments-section {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(92, 64, 51, 0.15);
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid #5c4033;
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -12,8 +12,11 @@
 
 .comments-section h3 {
   margin: 0 0 1rem 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: #d4a574;
   font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   flex-shrink: 0;
 }
 
@@ -28,32 +31,34 @@
 .comment-form textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #5c4033;
   border-radius: 4px;
   font-size: 1rem;
-  font-family: inherit;
+  font-family: 'Oswald', 'Arial Black', sans-serif;
   resize: vertical;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+  background: #0d0d0d;
+  color: #e0e0e0;
 }
 
 .comment-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #606060;
 }
 
 .comment-form textarea:focus {
   outline: none;
-  border-color: #4CAF50;
-  background: rgba(255, 255, 255, 0.15);
+  border-color: #8b5a2b;
+  background: #1a1a1a;
 }
 
 .auth-prompt {
   padding: 1rem;
-  background: rgba(255, 243, 205, 0.2);
+  background: rgba(92, 64, 51, 0.2);
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #5c4033;
+  color: #a0a0a0;
   margin-bottom: 1rem;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .comments-list {
@@ -68,30 +73,29 @@
   min-height: 0;
 }
 
-/* Стили для скроллбара */
 .comments-list::-webkit-scrollbar {
   width: 8px;
 }
 
 .comments-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: #1a1a1a;
   border-radius: 4px;
 }
 
 .comments-list::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: #5c4033;
   border-radius: 4px;
 }
 
 .comments-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: #8b5a2b;
 }
 
 .comment-item {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
   padding: 1rem;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid #5c4033;
   flex-shrink: 0;
 }
 
@@ -103,47 +107,144 @@
 }
 
 .comment-author {
-  font-weight: 600;
-  color: #4CAF50;
+  font-weight: 700;
+  color: #d4a574;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
 }
 
 .comment-date {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #707070;
 }
 
 .comment-text {
-  color: rgba(255, 255, 255, 0.9);
+  color: #e0e0e0;
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 
-.btn-delete-comment {
-  background: #f44336;
-  color: white;
-  border: none;
+.comment-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-comment-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  color: #a0a0a0;
+  border: 1px solid #5c4033;
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  font-family: 'Oswald', 'Arial Black', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.btn-edit-comment:hover {
+  background: rgba(92, 64, 51, 0.3);
+  color: #d4a574;
+  border-color: #8b5a2b;
+}
+
+.btn-delete-comment {
+  border-color: #8b0000;
 }
 
 .btn-delete-comment:hover {
-  background: #d32f2f;
+  background: #8b0000;
+  color: white;
+}
+
+.comment-edit {
+  margin-top: 8px;
+}
+
+.comment-edit textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #5c4033;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: 'Oswald', 'Arial Black', sans-serif;
+  resize: vertical;
+  background: #0d0d0d;
+  color: #e0e0e0;
+  margin-bottom: 8px;
+}
+
+.comment-edit textarea:focus {
+  outline: none;
+  border-color: #8b5a2b;
+  background: #1a1a1a;
+}
+
+.comment-edit-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: 'Oswald', 'Arial Black', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-save {
+  background: #2d5016;
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  background: #3d6b1e;
+}
+
+.btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #a0a0a0;
+  border: 1px solid #5c4033;
+}
+
+.btn-cancel:hover {
+  background: rgba(92, 64, 51, 0.3);
+  color: #d4a574;
 }
 
 .no-comments {
   text-align: center;
-  color: rgba(255, 255, 255, 0.6);
+  color: #707070;
   padding: 2rem;
   font-style: italic;
 }
 
 .error-message {
-  background: #ffebee;
-  color: #c62828;
+  background: rgba(139, 0, 0, 0.2);
+  color: #a52a2a;
   padding: 0.75rem;
   border-radius: 4px;
   font-size: 0.9rem;
+  border: 1px solid #8b0000;
 }
-

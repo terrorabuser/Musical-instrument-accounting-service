@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { X } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import './Login.css'
 
@@ -35,7 +36,7 @@ export default function Register({ onClose, onSwitchToLogin }: RegisterProps) {
       <div className="auth-modal" onClick={(e) => e.stopPropagation()}>
         <div className="auth-header">
           <h2>Регистрация</h2>
-          <button className="close-btn" onClick={onClose}>✕</button>
+          <button className="close-btn" onClick={onClose}><X size={20} /></button>
         </div>
         <form onSubmit={handleSubmit} className="auth-form">
           {error && <div className="error-message">{error}</div>}
@@ -85,7 +86,3 @@ export default function Register({ onClose, onSwitchToLogin }: RegisterProps) {
     </div>
   )
 }
-
-
-
-

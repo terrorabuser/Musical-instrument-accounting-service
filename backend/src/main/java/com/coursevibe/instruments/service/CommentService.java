@@ -60,6 +60,20 @@ public class CommentService {
             .collect(Collectors.toList());
     }
     
+    public CommentDTO update(Long id, CommentDTO dto) {
+        Comment comment = commentRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Comment not found with id: " + id));
+        
+        String username = SecurityUtils.getCurrentUsername();
+        if (username == null || !comment.getAuthor().getUsername().equals(username)) {
+            throw new AccessDeniedException("Only the author can edit this comment");
+        }
+        
+        comment.setText(dto.getText());
+        Comment saved = commentRepository.save(comment);
+        return convertToDTO(saved);
+    }
+    
     public void delete(Long id) {
         Comment comment = commentRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Comment not found with id: " + id));

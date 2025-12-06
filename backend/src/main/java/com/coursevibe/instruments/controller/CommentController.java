@@ -35,6 +35,13 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
     
+    @PutMapping("/{id}")
+    @PreAuthorize("isAuthenticated()")
+    public ResponseEntity<CommentDTO> update(@PathVariable Long id, @Valid @RequestBody CommentDTO dto) {
+        CommentDTO updated = service.update(id, dto);
+        return ResponseEntity.ok(updated);
+    }
+    
     @DeleteMapping("/{id}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

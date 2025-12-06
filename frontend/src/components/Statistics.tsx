@@ -1,3 +1,4 @@
+import { DollarSign, BarChart3 } from 'lucide-react'
 import './Statistics.css'
 
 interface StatisticsProps {
@@ -17,14 +18,18 @@ function Statistics({ totalValue, averageValue }: StatisticsProps) {
   return (
     <div className="statistics">
       <div className="stat-card">
-        <div className="stat-icon">💰</div>
+        <div className="stat-icon">
+          <DollarSign />
+        </div>
         <div className="stat-content">
           <div className="stat-label">Общая стоимость</div>
           <div className="stat-value">{formatCurrency(totalValue)}</div>
         </div>
       </div>
       <div className="stat-card">
-        <div className="stat-icon">📊</div>
+        <div className="stat-icon">
+          <BarChart3 />
+        </div>
         <div className="stat-content">
           <div className="stat-label">Средняя стоимость</div>
           <div className="stat-value">{formatCurrency(averageValue)}</div>
@@ -35,7 +40,3 @@ function Statistics({ totalValue, averageValue }: StatisticsProps) {
 }
 
 export default Statistics
-
-
-
-

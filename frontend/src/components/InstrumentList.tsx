@@ -1,3 +1,4 @@
+import { Music } from 'lucide-react'
 import { Instrument } from '../services/api'
 import './InstrumentList.css'
 
@@ -22,7 +23,9 @@ function InstrumentList({ instruments, onCardClick }: InstrumentListProps) {
   if (instruments.length === 0) {
     return (
       <div className="empty-state">
-        <div className="empty-icon">🎵</div>
+        <div className="empty-icon">
+          <Music size={64} />
+        </div>
         <h2>Нет инструментов</h2>
         <p>Добавьте первый музыкальный инструмент в систему</p>
       </div>
@@ -80,7 +83,3 @@ function InstrumentList({ instruments, onCardClick }: InstrumentListProps) {
 }
 
 export default InstrumentList
-
-
-
-

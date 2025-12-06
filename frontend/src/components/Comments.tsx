@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Comment, getComments, createComment, deleteComment } from '../services/api'
+import { Edit3, Trash2, Check, X } from 'lucide-react'
+import { Comment, getComments, createComment, updateComment, deleteComment } from '../services/api'
 import { useAuth } from '../contexts/AuthContext'
 import './Comments.css'
 
@@ -12,6 +13,8 @@ export default function Comments({ instrumentId }: CommentsProps) {
   const [newComment, setNewComment] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [editingId, setEditingId] = useState<number | null>(null)
+  const [editText, setEditText] = useState('')
   const { isAuthenticated, user } = useAuth()
 
   useEffect(() => {
@@ -45,6 +48,29 @@ export default function Comments({ instrumentId }: CommentsProps) {
       setError(err.response?.data?.message || 'Ошибка добавления комментария')
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleEdit = (comment: Comment) => {
+    setEditingId(comment.id!)
+    setEditText(comment.text)
+  }
+
+  const handleCancelEdit = () => {
+    setEditingId(null)
+    setEditText('')
+  }
+
+  const handleSaveEdit = async (id: number) => {
+    if (!editText.trim()) return
+
+    try {
+      await updateComment(id, editText.trim())
+      setEditingId(null)
+      setEditText('')
+      await loadComments()
+    } catch (err: any) {
+      alert(err.response?.data?.message || 'Ошибка редактирования комментария')
     }
   }
 
@@ -106,14 +132,51 @@ export default function Comments({ instrumentId }: CommentsProps) {
                 <span className="comment-author">{comment.authorNickname || 'Пользователь'}</span>
                 <span className="comment-date">{formatDate(comment.createdAt)}</span>
               </div>
-              <div className="comment-text">{comment.text}</div>
-              {isAuthenticated && user?.userId === comment.authorId && (
-                <button
-                  className="btn-delete-comment"
-                  onClick={() => comment.id && handleDelete(comment.id)}
-                >
-                  Удалить
-                </button>
+              
+              {editingId === comment.id ? (
+                <div className="comment-edit">
+                  <textarea
+                    value={editText}
+                    onChange={(e) => setEditText(e.target.value)}
+                    rows={3}
+                    maxLength={1000}
+                  />
+                  <div className="comment-edit-actions">
+                    <button
+                      className="btn-edit-action btn-save"
+                      onClick={() => handleSaveEdit(comment.id!)}
+                      disabled={!editText.trim()}
+                    >
+                      <Check size={16} /> Сохранить
+                    </button>
+                    <button
+                      className="btn-edit-action btn-cancel"
+                      onClick={handleCancelEdit}
+                    >
+                      <X size={16} /> Отмена
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="comment-text">{comment.text}</div>
+                  {isAuthenticated && user?.userId === comment.authorId && (
+                    <div className="comment-actions">
+                      <button
+                        className="btn-comment-action btn-edit-comment"
+                        onClick={() => handleEdit(comment)}
+                      >
+                        <Edit3 size={14} /> Изменить
+                      </button>
+                      <button
+                        className="btn-comment-action btn-delete-comment"
+                        onClick={() => comment.id && handleDelete(comment.id)}
+                      >
+                        <Trash2 size={14} /> Удалить
+                      </button>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           ))
@@ -122,7 +185,3 @@ export default function Comments({ instrumentId }: CommentsProps) {
     </div>
   )
 }
-
-
-
-

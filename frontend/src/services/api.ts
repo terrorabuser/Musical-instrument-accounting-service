@@ -177,6 +177,11 @@ export const createComment = async (comment: Omit<Comment, 'id' | 'createdAt' | 
   return response.data
 }
 
+export const updateComment = async (id: number, text: string): Promise<Comment> => {
+  const response = await api.put<Comment>(`/comments/${id}`, { text, instrumentId: 0 })
+  return response.data
+}
+
 export const deleteComment = async (id: number): Promise<void> => {
   await api.delete(`/comments/${id}`)
 }

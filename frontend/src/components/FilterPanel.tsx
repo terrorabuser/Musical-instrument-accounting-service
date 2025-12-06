@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Search, RotateCcw } from 'lucide-react'
 import { FilterParams, getAllTypes, getAllBrands } from '../services/api'
 import './FilterPanel.css'
 
@@ -33,7 +34,7 @@ function FilterPanel({ filters, onFilterChange }: FilterPanelProps) {
     onFilterChange({
       ...filters,
       [key]: value,
-      page: 0 // Сбрасываем на первую страницу при изменении фильтров
+      page: 0
     })
   }
 
@@ -49,7 +50,7 @@ function FilterPanel({ filters, onFilterChange }: FilterPanelProps) {
   return (
     <div className="filter-panel">
       <div className="filter-header" onClick={() => setIsExpanded(!isExpanded)}>
-        <h3>🔍 Фильтры</h3>
+        <h3><Search size={20} /> Фильтры</h3>
         <span className={`filter-toggle ${isExpanded ? 'expanded' : ''}`}>▼</span>
       </div>
       
@@ -172,7 +173,7 @@ function FilterPanel({ filters, onFilterChange }: FilterPanelProps) {
 
           <div className="filter-actions">
             <button className="btn btn-secondary" onClick={handleReset}>
-              🔄 Сбросить фильтры
+              <RotateCcw size={18} /> Сбросить фильтры
             </button>
           </div>
         </div>
@@ -182,8 +183,3 @@ function FilterPanel({ filters, onFilterChange }: FilterPanelProps) {
 }
 
 export default FilterPanel
-
-
-
-
-
