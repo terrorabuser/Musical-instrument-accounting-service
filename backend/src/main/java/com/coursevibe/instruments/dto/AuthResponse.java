@@ -1,0 +1,55 @@
+package com.coursevibe.instruments.dto;
+
+public class AuthResponse {
+    
+    private String token;
+    private String username;
+    private String nickname;
+    private Long userId;
+    
+    public AuthResponse() {
+    }
+    
+    public AuthResponse(String token, String username, String nickname, Long userId) {
+        this.token = token;
+        this.username = username;
+        this.nickname = nickname;
+        this.userId = userId;
+    }
+    
+    public String getToken() {
+        return token;
+    }
+    
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getNickname() {
+        return nickname;
+    }
+    
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+    
+    public Long getUserId() {
+        return userId;
+    }
+    
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+}
+
+
+
+

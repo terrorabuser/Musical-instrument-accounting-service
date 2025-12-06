@@ -1,0 +1,80 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid #5c4033;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.pagination-info {
+  color: #a0a0a0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pagination-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 2px solid #5c4033;
+  border-radius: 4px;
+  color: #d4a574;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Oswald', 'Arial Black', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background: rgba(92, 64, 51, 0.3);
+  border-color: #8b5a2b;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pagination-btn.active {
+  background: #5c4033;
+  border-color: #5c4033;
+  color: #fff;
+}
+
+.pagination-ellipsis {
+  color: #5c4033;
+  padding: 0 8px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pagination-btn {
+    min-width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+}
